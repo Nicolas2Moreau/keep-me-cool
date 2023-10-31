@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "keepcool-app": {
+    "ng-cool": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/keepcool-app",
+            "outputPath": "dist/ng-cool",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "keepcool-app:build:production"
+              "browserTarget": "ng-cool:build:production"
             },
             "development": {
-              "browserTarget": "keepcool-app:build:development"
+              "browserTarget": "ng-cool:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "keepcool-app:build"
+            "browserTarget": "ng-cool:build"
           }
         },
         "test": {

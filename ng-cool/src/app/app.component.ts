@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'keepcool-app';
+  title = 'Keep Me Cool';
   actualVersion = '1.0.0';
   availableVersion = '1.0.0';
 }
