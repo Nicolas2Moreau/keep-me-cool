@@ -27,4 +27,21 @@ module.exports = {
       config: {},
     },
   ],
+    publishers: [
+      {
+        name: '@electron-forge/publisher-github',
+        config: {
+          repository: {
+            owner: 'Nicolas2Moreau',
+            name: 'keep-me-cool'
+          },
+          // repository: "nicolas2moreau/keep-me-cool",
+          // authToken: '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',
+          authToken:'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',
+          prerelease: true,
+          draft: true
+        },
+      }
+    ]
+  
 };

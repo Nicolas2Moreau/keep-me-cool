@@ -1,12 +1,15 @@
 {
   "name": "keep-me-cool-bro",
   "productName": "keep-me-cool-bro",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "My Electron application description",
   "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nicolas2Moreau/keep-me-cool"
+  },
   "scripts": {
-    "build:angular": "ng build --prod --output-path=out"
-,
+    "build:angular": "ng build --prod --output-path=out",
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
@@ -20,7 +23,12 @@
   },
   "license": "MIT",
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "dotenv": "^16.3.1",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-updater": "^6.1.4",
+    "os-utils": "^0.0.14",
+    "systeminformation": "^5.21.15",
+    "update-electron-app": "^3.0.0"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.4.2",
@@ -29,6 +37,8 @@
     "@electron-forge/maker-squirrel": "^6.4.2",
     "@electron-forge/maker-zip": "^6.4.2",
     "@electron-forge/plugin-auto-unpack-natives": "^6.4.2",
+    "@electron-forge/publisher-github": "^6.4.2",
+    "dotenv": "^16.3.1",
     "electron": "27.0.2"
   }
 }
