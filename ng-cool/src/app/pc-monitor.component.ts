@@ -23,7 +23,7 @@ declare global {
 })
 export default class PcMonitorComponent {
   public osObject:any;
-  public cpuTemperature:any;
+  public gpuTemperature:any;
   private _ipc: IpcRenderer | undefined;
 // constructor() {
 //   os.cpuUsage((v:object) => {
@@ -43,7 +43,7 @@ export default class PcMonitorComponent {
 
     if (window.require) {
        try {
-        delay(4000);
+        delay(1000);
         this._ipc = window.require('electron').ipcRenderer;
         console.log('IPC loaded successfully');
       } catch (e) {
@@ -67,14 +67,14 @@ export default class PcMonitorComponent {
 
     this._ipc?.on('main-window-ready', () => {
       // Now it's safe to request CPU temperature data
-      this._ipc?.send('request-cpu-temperature');
+      this._ipc?.send('request-gpu-temperature');
       console.log("request TO ELECTRON launched in angular");
     });
 
-    this._ipc?.on('cpu-temperature', (event:any, data:any) => {
+    this._ipc?.on('gpu-temperature', (event:any, data:any) => {
       this.zone.run(() => {
-        this.cpuTemperature = data.main;
-        console.log("GETTING CPU TEMPERATURE in angular");
+        this.gpuTemperature = data;
+        console.log("GETTING gpu TEMPERATURE in angular");
         console.log(data);
       });
     });

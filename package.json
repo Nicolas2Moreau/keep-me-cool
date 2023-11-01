@@ -1,7 +1,7 @@
 {
   "name": "keep-me-cool-bro",
   "productName": "keep-me-cool-bro",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "My Electron application description",
   "main": "app.js",
   "repository": {

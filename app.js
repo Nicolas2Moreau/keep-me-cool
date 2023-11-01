@@ -5,6 +5,57 @@ const { app, BrowserWindow, dialog,ipcMain,webContents,IpcRenderer } = require('
 const path = require('path');
 const si = require('systeminformation');
 const os = require('os-utils');
+// const { exec } = require('child_process');
+
+
+ipcMain.on('request-gpu-temperature', async (event) => {
+  const gpuTemperature = await getGPUTemperature();
+  event.sender.send('gpu-temperature', gpuTemperature);
+});
+
+async function getGPUTemperature() {
+  try {
+    const gpuData = await si.graphics();
+    console.log('GPU Information:', gpuData);
+    const gpuTemperature = gpuData.controllers[0].model;
+    console.log('GPU temperature:', gpuTemperature);
+    return gpuTemperature;
+  } catch (error) {
+    console.error('Error fetching GPU temperature:', error);
+    return null;
+  }
+}
+
+// async function cpuData() {
+//   try {
+//       const data = await si.cpu();
+//       console.log('CPU Information:');
+//       console.log('- manufacturer: ' + data.manufacturer);
+//       console.log('- brand: ' + data.brand);
+//       console.log('- speed: ' + data.speed);
+//       console.log('- cores: ' + data.cores);
+//       console.log('- physical cores: ' + data.physicalCores);
+//       console.log('...');
+//       console.log('- temperature: ' + data.temperature);
+//   } catch (e) {
+//       console.log(e)
+//   }
+// }
+// async function fetchCpuTemperature(event) {
+//   try {
+//     const temperatureData = await si.cpuTemperature();
+//     console.log('CPU temperature:', temperatureData);
+//     // Send the temperature data to the Angular renderer process
+//     event.sender.send('cpu-temperature', temperatureData);
+//   } catch (error) {
+//     console.error('Error fetching CPU temperature:', error);
+//   }
+// }
+// ipcMain.on('request-cpu-temperature', (event) => {
+// cpuData();
+// fetchCpuTemperature(event);
+// });
+
 
 // Fetch CPU usage
 os.cpuUsage((v) => {
@@ -48,8 +99,8 @@ const createChildWindow = () => {
   console.error("cooucou");
   // and load the index.html of the app.
   appWindow.loadFile('./ng-cool/dist/ng-cool/index.html')
-  appWindow.on('closed', function () {
-    // appWindow = null
+  appWindow.on('quit', function () {
+    appWindow = null;
   })
   // appWindow.webContents. 
   // appWindow.setMenu(null);
